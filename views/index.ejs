@@ -11,20 +11,20 @@
 
             <!-- END OF NAV PARTIAL -->
 
-            <div class="blog content">
-                <h2>all blogs</h2>
+            <div class="content">
+                <h2 class="title">All blogs</h2>
 
                 <!-- vodi racuna kako si postavio pipe  <% %> <%    %> -->
                 <% if(blogs.length > 0){%>
                     <% blogs.map((blog)=>{ %>
-
-                        <h2 class="title">
-                            <%=blog.title %>
-                        </h2>
-                        <p class="snippet">
-                            <%= blog.snippet %>
-                        </p>
-
+                        <div class="blogs">
+                            <h2 class="subtitle">
+                                <%=blog.title %>
+                            </h2>
+                            <p class="snippet">
+                                <%= blog.snippet %>
+                            </p>
+                        </div>
                         <% }) %>
                             <% } else{ %>
                                 <p>sorry, no blogs to display</p>

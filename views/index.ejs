@@ -1,46 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- HEAD PARTIAL -->
+<%- include('../partials/head.ejs') %>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>node Blog app |
-        <%= title %>
-    </title>
-</head>
+    <!-- END OF HEAD PARTIAL -->
 
-<body>
-    <nav>
-        <div class="site-title">
-            <a href="/">NodeJS blog</a>
-            <p>a node JS blog site</p>
-        </div>
-        <ul>
-            <li><a href="/"> Blogs</a></li>
-            <li><a href="/about"> About</a></li>
-            <li><a href="/blogs/create"> New blog</a></li>
-        </ul>
-    </nav>
-    <div class="blog content">
-        <h2>all blogs</h2>
+    <body>
+        <!-- NAV PARTIAL -->
+        <%- include('../partials/nav.ejs') %>
 
-        <!-- vodi racuna kako si postavio pipe  <% %> <%    %> -->
-        <% if(blogs.length > 0){%>
-            <% blogs.map((blog)=>{ %>
+            <!-- END OF NAV PARTIAL -->
 
-                <h2 class="title">
-                    <%=blog.title %>
-                </h2>
-                <p class="snippet">
-                    <%= blog.snippet %>
-                </p>
+            <div class="blog content">
+                <h2>all blogs</h2>
 
-                <% }) %>
-                    <% } else{ %>
-                        <p>sorry, no blogs to display</p>
-                        <% } %>
-    </div>
-</body>
+                <!-- vodi racuna kako si postavio pipe  <% %> <%    %> -->
+                <% if(blogs.length > 0){%>
+                    <% blogs.map((blog)=>{ %>
+
+                        <h2 class="title">
+                            <%=blog.title %>
+                        </h2>
+                        <p class="snippet">
+                            <%= blog.snippet %>
+                        </p>
+
+                        <% }) %>
+                            <% } else{ %>
+                                <p>sorry, no blogs to display</p>
+                                <% } %>
+            </div>
+            <!-- FOOTER PARTIAL -->
+            <%- include('../partials/footer.ejs') %>
+
+                <!-- END OF FOOTER PARTIAL -->
+    </body>
 
 </html>

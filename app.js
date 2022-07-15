@@ -17,7 +17,13 @@ app.listen(3000, () => {
 });
 
 app.get("/", (req, res) => {
-    res.render("index", { title: "Home" });
+    const blogs = [
+        { title: "bagzi bi da jede ", snippet: "lorem ipsum dolor sit amet" },
+        { title: "dusan bi da trenira ", snippet: "lorem ipsum dolor sit amet" },
+        { title: "bagzi bi u setnju ", snippet: "lorem ipsum dolor sit amet" },
+    ];
+    //adding dinamic values to the ejs pages
+    res.render("index", { title: "Home", blogs });
 });
 
 app.get("/about", (req, res) => {

@@ -16,6 +16,17 @@ app.listen(3000, () => {
     "user hit the port 3000...";
 });
 
+//middleware for static
+
+app.use(express.static("public"));
+// end of middleware static
+
+app.use((req, res, next) => {
+    console.log("new request made");
+    // with next app use says ok, we are finished so move one
+    next();
+});
+
 app.get("/", (req, res) => {
     const blogs = [
         { title: "bagzi bi da jede ", snippet: "lorem ipsum dolor sit amet" },

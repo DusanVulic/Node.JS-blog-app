@@ -6,8 +6,12 @@ const app = express();
 
 /// initialization of a mongoose
 const mongoose = require("mongoose");
+const Blog = require("./models/blog.js");
 
 //
+
+//IMPORTING MODEL
+const BLog = require("./models/blog.js");
 
 //register / connect with database
 const dbURI =
@@ -15,7 +19,11 @@ const dbURI =
 
 mongoose
     .connect(dbURI)
-    .then((result) => console.log("connected to the DB"))
+    .then((result) =>
+        app.listen(3000, () => {
+            "user hit the port 3000...";
+        })
+    )
     .catch((error) => console.log(error));
 
 ///
@@ -27,10 +35,12 @@ app.set("view engine", "ejs");
 ///
 
 //listen for requests
+// untill I add mongoose
+// than I add it to the DB connection
 
-app.listen(3000, () => {
-    "user hit the port 3000...";
-});
+// app.listen(3000, () => {
+//     "user hit the port 3000...";
+// });
 
 //middleware for static
 
@@ -43,18 +53,57 @@ app.use((req, res, next) => {
     next();
 });
 
+///mongo and mongoose sandbox -testing !!!!!
+
+// //creating new blog test
+// app.get("/add-blog", (req, res) => {
+//     const blog = new BLog({
+//         title: "new blog 222",
+//         snippet: " about my new blog",
+//         body: "more stuf about my new blog",
+//     });
+
+//     blog
+//         .save()
+//         .then((result) => {
+//             res.send(result);
+//         })
+//         .catch((error) => console.log(error));
+// });
+
+// //get all blogs test
+// app.get("/all-blogs", (req, res) => {
+//     Blog.find()
+//         .then((result) => {
+//             res.send(result);
+//         })
+//         .catch((error) => console.log(error));
+// });
+
+// app.get("/single-blog", (req, res) => {
+//     Blog.findById("62d5307f4bd28702948a7673")
+//         .then((result) => res.send(result))
+//         .catch((error) => console.log(error));
+// });
+
+// ////// END OF TESTS !!!!!!
+
+///ROUTES
 app.get("/", (req, res) => {
-    const blogs = [
-        { title: "bagzi bi da jede ", snippet: "lorem ipsum dolor sit amet" },
-        { title: "dusan bi da trenira ", snippet: "lorem ipsum dolor sit amet" },
-        { title: "bagzi bi u setnju ", snippet: "lorem ipsum dolor sit amet" },
-    ];
-    //adding dinamic values to the ejs pages
-    res.render("index", { title: "Home", blogs });
+    res.redirect("/blogs");
 });
 
 app.get("/about", (req, res) => {
     res.render("about", { title: "About" });
+});
+
+//// blog routes
+app.get("/blogs", (req, res) => {
+    Blog.find()
+        .then((result) => {
+            res.render("index", { title: "all blogs", blogs: result });
+        })
+        .catch((error) => console.log(error));
 });
 
 app.get("/blogs/create", (req, res) => {

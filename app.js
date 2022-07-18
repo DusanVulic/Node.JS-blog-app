@@ -4,6 +4,11 @@ const express = require("express");
 
 const app = express();
 
+//register with database
+
+const dbURI =
+    "mongodb+srv://dukadizel:test1234@nodeexpressprojects.xowmjvz.mongodb.net/?retryWrites=true&w=majority";
+
 ///  register view engine :
 
 app.set("view engine", "ejs");

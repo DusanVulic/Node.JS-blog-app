@@ -4,10 +4,21 @@ const express = require("express");
 
 const app = express();
 
-//register with database
+/// initialization of a mongoose
+const mongoose = require("mongoose");
 
+//
+
+//register / connect with database
 const dbURI =
-    "mongodb+srv://dukadizel:test1234@nodeexpressprojects.xowmjvz.mongodb.net/?retryWrites=true&w=majority";
+    "mongodb+srv://dukadizel:test1234@nodeexpressprojects.xowmjvz.mongodb.net/NodeBlogs?retryWrites=true&w=majority";
+
+mongoose
+    .connect(dbURI)
+    .then((result) => console.log("connected to the DB"))
+    .catch((error) => console.log(error));
+
+///
 
 ///  register view engine :
 

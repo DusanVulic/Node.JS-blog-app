@@ -53,6 +53,9 @@ app.use((req, res, next) => {
     next();
 });
 
+//middleware
+app.use(express.urlencoded({ extended: true }));
+
 ///mongo and mongoose sandbox -testing !!!!!
 
 // //creating new blog test
@@ -103,6 +106,16 @@ app.get("/blogs", (req, res) => {
         .sort({ createdAt: -1 })
         .then((result) => {
             res.render("index", { title: "all blogs", blogs: result });
+        })
+        .catch((error) => console.log(error));
+});
+
+app.post("/blogs", (req, res) => {
+    const blog = new Blog(req.body);
+    blog
+        .save()
+        .then((result) => {
+            res.redirect("/");
         })
         .catch((error) => console.log(error));
 });

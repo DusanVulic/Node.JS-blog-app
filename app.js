@@ -100,6 +100,7 @@ app.get("/about", (req, res) => {
 //// blog routes
 app.get("/blogs", (req, res) => {
     Blog.find()
+        .sort({ createdAt: -1 })
         .then((result) => {
             res.render("index", { title: "all blogs", blogs: result });
         })

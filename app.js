@@ -119,9 +119,22 @@ app.post("/blogs", (req, res) => {
         })
         .catch((error) => console.log(error));
 });
-
+//
 app.get("/blogs/create", (req, res) => {
     res.render("create", { title: "create new blog" });
+});
+
+//
+app.get("/blogs/:id", (req, res) => {
+    const id = req.params.id;
+
+    Blog.findById(id)
+        .then((result) => {
+            res.render("details", { blog: result, title: " blog details" });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 });
 
 app.use((req, res) => {

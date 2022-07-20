@@ -164,3 +164,14 @@ textarea {
 .create-blog button:hover {
     background: rgb(185, 3, 39);
 }
+
+
+/* nav  */
+
+.bar {
+    background: red;
+    width: 20px;
+    height: 4px;
+    display: block;
+    margin-bottom: 5px;
+}

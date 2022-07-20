@@ -13,11 +13,14 @@ const blogRoutes = require("./routes/blogRoutes");
 const BLog = require("./models/blog.js");
 
 //register / connect with database
-const dbURI =
-    "mongodb+srv://dukadizel:test1234@nodeexpressprojects.xowmjvz.mongodb.net/NodeBlogs?retryWrites=true&w=majority";
+// const dbURI =
+//     "HERE WAS PROPERTY THAT I MOVED INTO THE .env file;
+
+///
+require("dotenv").config();
 
 mongoose
-    .connect(dbURI)
+    .connect(process.env.MONGO_URI)
     .then((result) =>
         app.listen(3000, () => {
             "user hit the port 3000...";
